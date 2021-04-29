@@ -13,17 +13,17 @@ private:
 
 public:
     environnement();
-    environnement(int nbreObstacle, int nbreNourriture, int largeur, int hauteur, int tauxPheromone);
+    environnement(int nbreO, int nbreN, int l, int h, int tauxPhero);
     ~environnement();
-    int getNbreObstacle();
-    void setNbreObstacle(int nbreObstacle);
-    int getNbreNourriture();
-    void setNbreNourriture(int nbreNourriture);
-    int getLargeur();
-    void setLargeur(int largeur);
-    int getHauteur();
-    void setHauteur(int hauteur);
-    int getTauxPheromone();
-    void setTauxPheromone(int tauxPheromone);
+    int getNbreObstacle() const { return nbreObstacle;}
+    void setNbreObstacle(int nbreO) {nbreObstacle=nbreO;}
+    int getNbreNourriture() const { return nbreNourriture;}
+    void setNbreNourriture(int nbreN) {nbreNourriture=nbreN;}
+    int getLargeur() const { return largeur;}
+    void setLargeur(int l) {largeur=l;}
+    int getHauteur() const { return hauteur;}
+    void setHauteur(int h) {hauteur=h;}
+    int getTauxPheromone() const { return tauxPheromone;}
+    void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
 
 };
