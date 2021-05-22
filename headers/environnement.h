@@ -1,6 +1,7 @@
-//my class environnement.h
 
-class environnement
+#include <vector>
+#include "cellule.h"
+class Environnement
 {
 private:
     /* data */
@@ -9,12 +10,12 @@ private:
     int largeur;
     int hauteur;
     int tauxPheromone;
-
+    std::vector<std::vector<Cellule>> terrain;
 
 public:
-    environnement();
-    environnement(int nbreO, int nbreN, int l, int h, int tauxPhero);
-    ~environnement();
+    Environnement();
+    Environnement(int nbreO, int nbreN, int l, int h, int tauxPhero);
+    ~Environnement();
     int getNbreObstacle() const { return nbreObstacle;}
     void setNbreObstacle(int nbreO) {nbreObstacle=nbreO;}
     int getNbreNourriture() const { return nbreNourriture;}
@@ -25,5 +26,6 @@ public:
     void setHauteur(int h) {hauteur=h;}
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
+    void affiche();
 
 };
