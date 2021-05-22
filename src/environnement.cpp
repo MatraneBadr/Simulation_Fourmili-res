@@ -16,6 +16,8 @@ Environnement::Environnement()
             terrain[i][j] = Cellule( i , j , LIBRE);
         }
     }
+    
+    initObstacleNourriture(true);
 }
 
 Environnement::Environnement(int nbreO, int nbreN, int l, int h, int tauxPhero)
@@ -43,5 +45,35 @@ void Environnement::affiche(){
     }
     std::cout<<std::endl;
 }
+void Environnement::initObstacleNourriture(bool cellulesSontLibres){
+    if(!cellulesSontLibres) {
+        //ajouter traitement remise à libre de toutes les cellules
+    }
+    int x,y;
+    for (int i = 0; i<nbreNourriture;i++){
+        x = rand() % hauteur;
+        y = rand() % largeur;
+        getCelluleLibre(x,y).setType(OBSTACLE);
+    }
+    for (int i = 0; i<nbreNourriture;i++){
+        x = rand() % hauteur;
+        y = rand() % largeur;
+        Cellule* retenue = & getCelluleLibre(x,y);
+        retenue->setType(NOURRITURE);
+        retenue->setNourriture(500);
+    }
+}
+Cellule& Environnement::getCellule(int x, int y) {
+    if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
+    return terrain[x][y];
+}
 
+Cellule& Environnement::getCelluleLibre(int x, int y) {
+    while (terrain[x][y].getType() != LIBRE){
+        if (y<largeur-1) y++;
+        else if (x<hauteur-1) { x++; y=0;}
+        else { x=0 ; y=0;}
+    }
+    return terrain[x][y];
+}
 #endif // ENVIRONNEMENT_H

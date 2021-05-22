@@ -6,6 +6,8 @@ class Cellule {
         int x;
         int y;
         T_TYPE_CELLULE type;
+    protected:
+        int nourriture;
     public :
         Cellule();
         Cellule( int coordX, int coordY, T_TYPE_CELLULE type );
@@ -19,5 +21,7 @@ class Cellule {
         Cellule getDessous() const;
         Cellule getDroite() const;
         Cellule getGauche() const;
+        
+         void setNourriture(int n);
 };
 #endif // CELLULE_H

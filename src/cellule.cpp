@@ -18,3 +18,6 @@ T_TYPE_CELLULE Cellule::getType() const {
 void Cellule::setType(T_TYPE_CELLULE type) {
     this->type = type;
 }
+void Cellule::setNourriture(int n){
+    this->nourriture = n;
+}

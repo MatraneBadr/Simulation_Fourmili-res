@@ -27,5 +27,8 @@ public:
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
     void affiche();
+    void initObstacleNourriture(bool cellulesSontLibres);
+    Cellule& getCellule(int x, int y);
+    Cellule& getCelluleLibre(int x, int y);
 
 };
