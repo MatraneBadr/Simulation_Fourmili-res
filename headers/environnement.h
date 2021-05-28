@@ -10,7 +10,7 @@ private:
     int largeur;
     int hauteur;
     int tauxPheromone;
-    std::vector<std::vector<Cellule>> terrain;
+    std::vector<std::vector<Cellule> > terrain;
 
 public:
     Environnement();
