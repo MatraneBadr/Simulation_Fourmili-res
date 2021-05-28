@@ -3,15 +3,21 @@
 #endif
 #include "../headers/fourmiliere.h"
 
-Fourmiliere::Fourmiliere(){    
+Fourmiliere::Fourmiliere(int populationMax, int nourritureMax, int nourriture){  
+    x = 0;
+    y = 0;
+    _popMax = populationMax;
+    _nourritureMax = nourritureMax;
+    _nourriture = nourriture;
+    
 }
 
 Fourmiliere::~Fourmiliere(){
 }
 
-void Fourmiliere::consommationNourriture(){
+int Fourmiliere::consommationNourriture(int consommation){
+    _nourriture = _nourriture - consommation;
 }
 
 void Fourmiliere::generationFourmis(){
-    
 }

@@ -3,13 +3,14 @@ class Fourmiliere
 private:
     int _popMax;
     int _nourritureMax;
-    int _consommationReine;
-    int _consommationFourmis;
+    int x;
+    int y;
+    int _nourriture;
 
 public:
-    Fourmiliere();
+    Fourmiliere(int populationMax, int nourritureMax, int nourriture);
     ~Fourmiliere();
-    void consommationNourriture();
+    int consommationNourriture(int consommation);
     void generationFourmis();
 
 };
