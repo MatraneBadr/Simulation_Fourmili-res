@@ -2,6 +2,7 @@
 #define ENVIRONNEMENT_H
 #include "../headers/environnement.h"
 #include <iostream>
+
 Environnement::Environnement()
 {
     largeur=100;
@@ -33,11 +34,14 @@ Environnement::~Environnement()
 {   
 }
 
-void Environnement::affiche(){
+void Environnement::affiche(FourmisGuerriere* fourmi){
+    int x=fourmi->getX();
+    int y=fourmi->getY();
     for (int i=0 ; i < terrain.size();i++){
         std::cout<<std::endl;
         for (int j = 0 ; j < terrain[i].size(); j++){
-            if(terrain[i][j].getType() == LIBRE)  std::cout<<"_";
+            if (i==x && j==y) std::cout<<"L";
+            else if(terrain[i][j].getType() == LIBRE)  std::cout<<"_";
             else if (terrain[i][j].getType() == OBSTACLE)  std::cout<<"X";
             else if (terrain[i][j].getType() == NOURRITURE)  std::cout<<"O";
             else if (terrain[i][j].getType() == FOURMILIERE)  std::cout<<"F";

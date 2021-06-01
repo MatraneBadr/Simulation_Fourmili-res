@@ -1,6 +1,7 @@
 
 #include <vector>
 #include "cellule.h"
+#include "fourmisGuerriere.h"
 class Environnement
 {
 private:
@@ -26,7 +27,7 @@ public:
     void setHauteur(int h) {hauteur=h;}
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
-    void affiche();
+    void affiche(FourmisGuerriere* fourmi);
     void initObstacleNourriture(bool cellulesSontLibres);
     Cellule& getCellule(int x, int y);
     Cellule& getCelluleLibre(int x, int y);
