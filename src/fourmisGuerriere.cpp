@@ -1,69 +1,170 @@
 #include "../headers/fourmisGuerriere.h"
+#include "../headers/cellule.h"
+#include <vector>
+#include <string>
+#include <random>
+#include <cstdlib>
+#include <ctime>
 
+using std::vector;
+using std::string;
+using std::cout;
+using std::endl;
 FourmisGuerriere::FourmisGuerriere()
 {
     _quantiteStocke=0;
     _capacite=10;
     _vie=100;
+    _age=10;
     _x=0;
     _y=0;
 }
 
-FourmisGuerriere::FourmisGuerriere(int quantiteStocke, int capacite, int vie, int x , int y)
+FourmisGuerriere::FourmisGuerriere(int quantiteStocke, int capacite, int age,int vie, int x , int y)
 {
     _quantiteStocke = quantiteStocke;
     _capacite = capacite;
     _vie = vie;
+    _age = age;
     _x=x;
     _y=y;
 }
 
 
-char FourmisGuerriere::direction(){
-  int randNumber = rand();
-    int x = (randNumber % 4) + 1;
+char FourmisGuerriere::direction(vector<char> domainedeplacement,vector<vector<Cellule> >& vect){
 
-    if (x = 1)
-        return 'h';
-    else if (x = 2)
-        return 'b';
-    else if (x = 3)
-        return 'g';
-    else
-        return 'd';
+    srand((unsigned int)time(NULL));
+    int x = rand() % domainedeplacement.size() ; 
+    cout<<x<<endl;
+    char dir=domainedeplacement[x];
+    return dir;
+
+}
+void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& vect,int x, int y, char dir,vector<char> domainedeplacement)
+{
+
+        if(vect[x][y].getType()==OBSTACLE){
+            cout<<"obstacle";
+            char dir= direction(domainedeplacement,vect);
+            eviteObstacleChercheNourriture(vect,x,y,dir,domainedeplacement);
+        }
+        if(vect[x][y].getType()==NOURRITURE){
+            cout<<"nourr";
+            stockage(vect,x,y);
+        }
+         if(vect[x][y].getType()==LIBRE)
+         {
+             cout<<"lib";
+             this->_x=x;
+             this->_y=y;
+         }
 }
 
-void FourmisGuerriere::seDeplasser(char dir)
+vector<char> FourmisGuerriere::etudeEnvironnement(vector<vector<Cellule> >& vect,int hauteur,int largeur)
 {
+/* A traiter :
+    Prendre en compte la position de la fourmis 
+    -Traiter le cas de la colonne 0 
+    -Traiter le cas de la colonne max
+    -Traiter le cas de la ligne 0
+    -Traiter le cas de la ligne max 
+    -Traiter les angles (0,0) (0,max) (max,0) (max,max)
+    */
+    vector<char> direction;
+    int positionX,positionY;
+    positionX = this->getX();
+    positionY = this->getY();
+
+    
+    if (positionX == 0 && positionY == 0) //Si la fourmis est dans le coin supérieur gauche
+    {
+      direction.push_back('d');
+      direction.push_back('b');
+    }
+    else if (positionX == hauteur && positionY == 0)//Si la fourmis est dans le coin inférieur gauche
+    {
+      direction.push_back('d');
+      direction.push_back('h');
+    }
+    else if (positionX == 0 && positionY== largeur)//Si la fourmis est dans le coin supérieur droit
+    {
+      direction.push_back('g');
+      direction.push_back('b');
+    }
+    else if (positionX == hauteur && positionY == 0)//Si la fourmis est dans le coin inférieur gauche
+    {
+      direction.push_back('d');
+      direction.push_back('h');
+    }
+    else if (positionX == hauteur && positionY == largeur)//Si la fourmis est dans le coin inférieur droit
+    {
+      direction.push_back('g');
+      direction.push_back('h');
+    }
+    else if (positionX == 0)//Ligne 0
+    {
+        direction.push_back('g');
+        direction.push_back('d');
+        direction.push_back('b');
+    }
+    else if (positionX == hauteur)//Ligne max
+    {
+        direction.push_back('g');
+        direction.push_back('d');
+        direction.push_back('h');
+    }
+    else if (positionY==0)//Colonne 0
+    {
+        direction.push_back('h');
+        direction.push_back('d');
+        direction.push_back('b');
+    }
+    else if (positionY == largeur)//Colonne Max
+    {
+        direction.push_back('g');
+        direction.push_back('h');
+        direction.push_back('b');
+    }
+    else//Nimporte quel autre cas
+    {
+        direction.push_back('g');
+        direction.push_back('d');
+        direction.push_back('h');
+        direction.push_back('b');
+    }
+    
+    return direction;
+}
+void FourmisGuerriere::seDeplacer(vector<vector<Cellule> >& vect,char dir,vector<char> domainedeplacement)
+{
+    
+    int positionX,positionY;
+    positionX = this->getX();
+    positionY = this->getY();
+
     switch(dir)
     {
-        case 'h': this->_y--; break;
-        case 'b': this->_y++; break;
-        case 'g': this->_x--; break;
-        case 'd': this->_x++; break;
+        case 'h':positionX--; eviteObstacleChercheNourriture(vect,positionX,positionY,dir,domainedeplacement);break;
+        case 'b':positionX++; eviteObstacleChercheNourriture(vect,positionX,positionY,dir,domainedeplacement);break;
+        case 'g':positionY--; eviteObstacleChercheNourriture(vect,positionX,positionY,dir,domainedeplacement);break;
+        case 'd':positionY++; eviteObstacleChercheNourriture(vect,positionX,positionY,dir,domainedeplacement);break;
     }
+    
 }
-int FourmisGuerriere::stockage(int capacite,int quantiteStocke, int quantiteDisponible)
+void FourmisGuerriere::stockage(vector<vector<Cellule> >& vect, int positionXFood, int positionYFood)
 {
-    /*
-        La fourmis va récupérer de la nourriture sur la case nourriture en fonction de sa capacite
-        si elle ne plus plus stocker de nourriture elle va laisser la case 
-    */
-    if (quantiteStocke == capacite)
+    if (this->_capacite > this->_quantiteStocke)
     {
-        ;
+        cout << "Fourmis can stock" << endl ;
+        this->_quantiteStocke = this->_quantiteStocke + 1 ;
+        vect[positionXFood][positionYFood].setType(LIBRE);
     }
     else
     {
-        quantiteStocke = quantiteStocke + capacite;
-        if (quantiteStocke>capacite){
-            int reste = 0;
-            reste = quantiteStocke - capacite;
-            quantiteStocke = capacite;
-            /* utiliser les pointeur pour modifier la valeur de la nourriture ou la fourmis a agit */
-
-        }
+        cout << "Fourmis cant stock" << endl ;
     }
+
+    
 }
 
 void FourmisGuerriere::diminutionVie(){

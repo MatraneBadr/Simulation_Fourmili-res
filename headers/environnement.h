@@ -1,7 +1,10 @@
+#ifndef ENVIRONNEMENT_H
+#define ENVIRONNEMENT_H
 
 #include <vector>
 #include "cellule.h"
 #include "fourmisGuerriere.h"
+#include "fourmiliere.h"
 class Environnement
 {
 private:
@@ -22,14 +25,19 @@ public:
     int getNbreNourriture() const { return nbreNourriture;}
     void setNbreNourriture(int nbreN) {nbreNourriture=nbreN;}
     int getLargeur() const { return largeur;}
+    std::vector<std::vector<Cellule> >  getTerrain() const { return terrain;}
     void setLargeur(int l) {largeur=l;}
     int getHauteur() const { return hauteur;}
     void setHauteur(int h) {hauteur=h;}
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
     void affiche(FourmisGuerriere* fourmi);
+    void insereNewFourmiliere(int x, int y, int pm, int nm, int n);
     void initObstacleNourriture(bool cellulesSontLibres);
+    bool contientNourriture(int x,int y);
+    bool contientObstacle(int x,int y);
     Cellule& getCellule(int x, int y);
     Cellule& getCelluleLibre(int x, int y);
 
 };
+#endif

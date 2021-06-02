@@ -1,23 +1,28 @@
-#ifndef FOURMILIERE_H
-#define FOURMILIERE_H
-#endif
 #include "../headers/fourmiliere.h"
 
-Fourmiliere::Fourmiliere(int populationMax, int nourritureMax, int nourriture){  
-    x = 0;
-    y = 0;
+Fourmiliere::Fourmiliere(int populationMax, int nourritureMax, int nourriture,int x,int y):Cellule(x,y,FOURMILIERE){  
     _popMax = populationMax;
     _nourritureMax = nourritureMax;
     _nourriture = nourriture;
-    
+
 }
 
 Fourmiliere::~Fourmiliere(){
 }
 
-int Fourmiliere::consommationNourriture(int consommation){
-    _nourriture = _nourriture - consommation;
+bool Fourmiliere::consommationNourriture(int n){
+    if(_nourriture - n < 0) {
+        return false;
+    } else {
+        _nourriture -= n;
+        return true;
+    }
 }
 
-void Fourmiliere::generationFourmis(){
+void Fourmiliere::ajoutNourriture(int n){
+    if(_nourriture + n >= _nourritureMax) {
+        _nourriture = _nourritureMax;
+    } else {
+        _nourriture += n;
+    }
 }

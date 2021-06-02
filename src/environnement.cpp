@@ -1,5 +1,4 @@
-#ifndef ENVIRONNEMENT_H
-#define ENVIRONNEMENT_H
+
 #include "../headers/environnement.h"
 #include <iostream>
 
@@ -19,6 +18,7 @@ Environnement::Environnement()
     }
     
     initObstacleNourriture(true);
+    insereNewFourmiliere(hauteur/2,largeur/2,200,1000,100);
 }
 
 Environnement::Environnement(int nbreO, int nbreN, int l, int h, int tauxPhero)
@@ -49,6 +49,7 @@ void Environnement::affiche(FourmisGuerriere* fourmi){
     }
     std::cout<<std::endl;
 }
+
 void Environnement::initObstacleNourriture(bool cellulesSontLibres){
     if(!cellulesSontLibres) {
         //ajouter traitement remise à libre de toutes les cellules
@@ -67,6 +68,12 @@ void Environnement::initObstacleNourriture(bool cellulesSontLibres){
         retenue->setNourriture(500);
     }
 }
+
+void Environnement::insereNewFourmiliere(int x, int y, int pm, int nm, int n){
+    if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
+    terrain[x][y] = Fourmiliere(x,y,pm,nm,n);
+}
+
 Cellule& Environnement::getCellule(int x, int y) {
     if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
     return terrain[x][y];
@@ -80,4 +87,20 @@ Cellule& Environnement::getCelluleLibre(int x, int y) {
     }
     return terrain[x][y];
 }
-#endif // ENVIRONNEMENT_H
+
+bool Environnement::contientNourriture(int x,int y)
+{
+    bool cR=false;
+    if(terrain[x][y].getType()==NOURRITURE)
+        cR=true;
+    return cR;
+
+}
+bool Environnement::contientObstacle(int x,int y)
+{
+    bool cO=false;
+    if(terrain[x][y].getType()==OBSTACLE)
+        cO=true;
+    return cO;
+
+}
