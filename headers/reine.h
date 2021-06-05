@@ -12,9 +12,10 @@ class Reine
     
     public:
         Reine();
+        ~Reine();
         int getConsommation(){return _consommation;};
-        Oeuf ponteOeuf();
-        void reineConsomme();
+        vector<Oeuf*> ponteOeuf(vector<Oeuf*> listOeuf);
+        void consommerNourriture(Fourmiliere maisonFourmis);
 
 };
 #endif

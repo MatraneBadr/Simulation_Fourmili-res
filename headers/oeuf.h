@@ -1,5 +1,6 @@
 #ifndef OEUF_H
 #define OEUF_H
+#include "fourmiliere.h"
 
 class Oeuf{
     private:
@@ -8,9 +9,11 @@ class Oeuf{
 
     public:
         Oeuf();
+        ~Oeuf();
         int getConsommation(){return _consommation;};
         int getAge(){return _age;};
-        void setAge();
+        void Vieillir();
+        void consommerNourriture(Fourmiliere maisonFourmis);
 
 };
 

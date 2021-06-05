@@ -13,14 +13,24 @@ Reine::Reine()
     _consommation = 30 ;
 }
 
-void Reine::reineConsomme(){
-    //Discussion avec Badr ce soir
+Reine::~Reine()
+{
+}
+
+void Reine::consommerNourriture(Fourmiliere maisonFourmis){
+    maisonFourmis.consommationNourriture(_consommation);
     cout << "consommation" << endl;
 }
 
-Oeuf Reine::ponteOeuf()
+vector<Oeuf*> Reine::ponteOeuf(vector<Oeuf*> listOeuf)
 {
-    Oeuf a;
-    a = Oeuf();
-    return a;
+    /*
+        A chaque fois que la fonction est appelé la reine va pondre un oeuf
+        L'oeuf nouvellement crée est alors stocké dans la variable listOeuf
+        Tableau dynamique
+    */
+    Oeuf* newOeuf;
+    newOeuf = new Oeuf();
+    listOeuf.push_back(newOeuf);
+    return listOeuf;
 }

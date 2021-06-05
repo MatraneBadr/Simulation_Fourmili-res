@@ -10,12 +10,32 @@ using namespace std;
 
 int main()
 {
-    Oeuf a;
+    vector<Oeuf*> listOeuf;
+    for (Oeuf* x : listOeuf)
+    {
+        cout << x << endl ;
+    }
+    
+    
     Reine* maReine;
     maReine = new Reine();
-    maReine->reineConsomme();
-    a = maReine ->ponteOeuf();
-    cout << a.getAge() << endl;
+    listOeuf = maReine->ponteOeuf(listOeuf);
+    for (Oeuf* x : listOeuf)
+    {
+        cout << x->getAge() << endl ;
+    }
+    listOeuf = maReine->ponteOeuf(listOeuf);
+    for (Oeuf* x : listOeuf)
+    {
+        cout << x->getAge() << endl ;
+        x->Vieillir();
+    }
+    cout << "======Test====" << endl;
+    for (Oeuf* x: listOeuf)
+    {
+        cout << x->getAge() << endl ;
+    }
+    
 
     /*
     int nbrObstacle, nbrNourriture, nbTour, largeur, hauteur;
