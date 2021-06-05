@@ -169,6 +169,6 @@ void FourmisGuerriere::diminutionVie(){
     _vie -=  1 ;
 }
 
-int FourmisGuerriere::ravitailler(int vie){
+void FourmisGuerriere::ravitailler(int vie){
     /* Pour ce ravitailler la fourmis doit manger a voir comment ça fonctionne */
 }

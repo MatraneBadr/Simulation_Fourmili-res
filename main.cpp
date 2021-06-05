@@ -4,10 +4,20 @@
 #include "src/cellule.cpp"
 #include "src/fourmiliere.cpp"
 #include "src/fourmisGuerriere.cpp"
+#include "src/reine.cpp"
+#include "src/oeuf.cpp"
 using namespace std;
 
 int main()
 {
+    Oeuf a;
+    Reine* maReine;
+    maReine = new Reine();
+    maReine->reineConsomme();
+    a = maReine ->ponteOeuf();
+    cout << a.getAge() << endl;
+
+    /*
     int nbrObstacle, nbrNourriture, nbTour, largeur, hauteur;
     bool partieEnCours;
     std::vector<std::vector<Cellule> > terrain;
@@ -58,6 +68,7 @@ int main()
     else{
         cout<<"A+\n";
     }
+    */
 /*
     int Xfoumis=monEnv.getHauteur()/2;
     int Yfourmis=monEnv.getLargeur()/2;

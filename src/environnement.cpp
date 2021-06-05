@@ -67,7 +67,7 @@ void Environnement::initObstacleNourriture(bool cellulesSontLibres){
 */
 void Environnement::insereNewFourmiliere(int x, int y, int pm, int nm, int n){
     if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
-    terrain[x][y] = Fourmiliere(x,y,pm,nm,n);
+    terrain[x][y] = Fourmiliere(x,y,pm,nm,n); // appel au constructuer de fourmillere ok
 }
 
 Cellule& Environnement::getCellule(int x, int y) {
