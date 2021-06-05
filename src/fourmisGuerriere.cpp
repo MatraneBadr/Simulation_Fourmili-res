@@ -14,18 +14,18 @@ FourmisGuerriere::FourmisGuerriere()
 {
     _quantiteStocke=0;
     _capacite=10;
-    _vie=100;
-    _age=10;
+    _vie=10;
+    _age=0;
     _x=0;
     _y=0;
 }
 
-FourmisGuerriere::FourmisGuerriere(int quantiteStocke, int capacite, int age,int vie, int x , int y)
+FourmisGuerriere::FourmisGuerriere( int x , int y)
 {
-    _quantiteStocke = quantiteStocke;
-    _capacite = capacite;
-    _vie = vie;
-    _age = age;
+    _quantiteStocke = 0;
+    _capacite = 10;
+    _vie = 10;
+    _age = 0;
     _x=x;
     _y=y;
 }
@@ -35,7 +35,6 @@ char FourmisGuerriere::direction(vector<char> domainedeplacement,vector<vector<C
 
     srand((unsigned int)time(NULL));
     int x = rand() % domainedeplacement.size() ; 
-    cout<<x<<endl;
     char dir=domainedeplacement[x];
     return dir;
 
@@ -44,17 +43,14 @@ void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& 
 {
 
         if(vect[x][y].getType()==OBSTACLE){
-            cout<<"obstacle";
             char dir= direction(domainedeplacement,vect);
             eviteObstacleChercheNourriture(vect,x,y,dir,domainedeplacement);
         }
         if(vect[x][y].getType()==NOURRITURE){
-            cout<<"nourr";
             stockage(vect,x,y);
         }
          if(vect[x][y].getType()==LIBRE)
          {
-             cout<<"lib";
              this->_x=x;
              this->_y=y;
          }

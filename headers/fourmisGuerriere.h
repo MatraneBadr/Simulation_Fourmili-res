@@ -23,7 +23,7 @@ class FourmisGuerriere
 
     public:
         FourmisGuerriere();
-        FourmisGuerriere(int quantiteStocke, int capacite, int vie,int age, int x , int y);
+        FourmisGuerriere(int x , int y);
         char direction(vector<char> domainedeplacement,vector<vector<Cellule> >& vect);
         void seDeplacer(vector<vector<Cellule> >& vect,char dir,vector<char> domainedeplacement);
         //~FourmisGuerriere();

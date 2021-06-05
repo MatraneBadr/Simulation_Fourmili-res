@@ -5,6 +5,8 @@
 #include "cellule.h"
 #include "fourmisGuerriere.h"
 #include "fourmiliere.h"
+#include "nourriture.h"
+#include "obstacle.h"
 class Environnement
 {
 private:
@@ -15,7 +17,9 @@ private:
     int hauteur;
     int tauxPheromone;
     std::vector<std::vector<Cellule> > terrain;
-
+    std::vector<Nourriture> nourritures;
+    std::vector<Obstacle> obstacles;
+    std::vector<FourmisGuerriere> fourmis;
 public:
     Environnement();
     Environnement(int nbreO, int nbreN, int l, int h, int tauxPhero);
@@ -31,11 +35,14 @@ public:
     void setHauteur(int h) {hauteur=h;}
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
-    void affiche(FourmisGuerriere* fourmi);
+    void affiche(int x,int y);
     void insereNewFourmiliere(int x, int y, int pm, int nm, int n);
     void initObstacleNourriture(bool cellulesSontLibres);
     bool contientNourriture(int x,int y);
     bool contientObstacle(int x,int y);
+    void initTerrain();
+    void initObstacle();
+    void initNourriture();
     Cellule& getCellule(int x, int y);
     Cellule& getCelluleLibre(int x, int y);
 
