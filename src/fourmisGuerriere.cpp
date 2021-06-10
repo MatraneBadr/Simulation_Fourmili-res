@@ -58,77 +58,74 @@ void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& 
 
 vector<char> FourmisGuerriere::etudeEnvironnement(vector<vector<Cellule> >& vect,int hauteur,int largeur)
 {
-/* A traiter :
-    Prendre en compte la position de la fourmis 
-    -Traiter le cas de la colonne 0 
-    -Traiter le cas de la colonne max
-    -Traiter le cas de la ligne 0
-    -Traiter le cas de la ligne max 
-    -Traiter les angles (0,0) (0,max) (max,0) (max,max)
-    */
+
     vector<char> direction;
     int positionX,positionY;
     positionX = this->getX();
     positionY = this->getY();
 
-    
-    if (positionX == 0 && positionY == 0) //Si la fourmis est dans le coin supérieur gauche
-    {
-      direction.push_back('d');
-      direction.push_back('b');
-    }
-    else if (positionX == hauteur && positionY == 0)//Si la fourmis est dans le coin inférieur gauche
-    {
-      direction.push_back('d');
-      direction.push_back('h');
-    }
-    else if (positionX == 0 && positionY== largeur)//Si la fourmis est dans le coin supérieur droit
-    {
-      direction.push_back('g');
-      direction.push_back('b');
-    }
-    else if (positionX == hauteur && positionY == 0)//Si la fourmis est dans le coin inférieur gauche
-    {
-      direction.push_back('d');
-      direction.push_back('h');
-    }
-    else if (positionX == hauteur && positionY == largeur)//Si la fourmis est dans le coin inférieur droit
-    {
-      direction.push_back('g');
-      direction.push_back('h');
-    }
-    else if (positionX == 0)//Ligne 0
-    {
-        direction.push_back('g');
-        direction.push_back('d');
-        direction.push_back('b');
-    }
-    else if (positionX == hauteur)//Ligne max
-    {
+
+   if (positionX ==0)
+   {
+       if (positionY==0) //Si la fourmis est dans le coin supérieur gauche
+       {
+            direction.push_back('d');
+            direction.push_back('b');
+       }
+       else if (positionY == largeur-1) //Si la fourmis est dans le coin supérieur droit
+       {
+            direction.push_back('g');
+            direction.push_back('b');
+       }
+       else //colonne 0
+       {
+            direction.push_back('g');
+            direction.push_back('d');
+            direction.push_back('b');
+       }
+   }
+   else if(positionY==0)
+   {
+       if(positionX == hauteur-1) //Si la fourmis est dans le coin inférieur gauche
+       {
+            direction.push_back('d');
+            direction.push_back('h');
+       }
+       else //ligne 0
+       {
+            direction.push_back('h');
+            direction.push_back('d');
+            direction.push_back('b');
+       }
+   }
+   else if (positionX == hauteur-1)
+   {
+       if (positionY ==largeur-1) //Si la fourmis est dans le coin inférieur droit
+       {
+            direction.push_back('g');
+            direction.push_back('h');
+       }
+       else//colonne max
+       {
+            direction.push_back('g');
+            direction.push_back('d');
+            direction.push_back('h');
+       }
+   }
+    else if (positionY == largeur-1) //ligne max
+   {
+            direction.push_back('g');
+            direction.push_back('h');
+            direction.push_back('b');
+   }
+   else //Nimporte quel autre cas
+   {
         direction.push_back('g');
         direction.push_back('d');
         direction.push_back('h');
-    }
-    else if (positionY==0)//Colonne 0
-    {
-        direction.push_back('h');
-        direction.push_back('d');
         direction.push_back('b');
-    }
-    else if (positionY == largeur)//Colonne Max
-    {
-        direction.push_back('g');
-        direction.push_back('h');
-        direction.push_back('b');
-    }
-    else//Nimporte quel autre cas
-    {
-        direction.push_back('g');
-        direction.push_back('d');
-        direction.push_back('h');
-        direction.push_back('b');
-    }
-    
+   }
+
     return direction;
 }
 void FourmisGuerriere::seDeplacer(vector<vector<Cellule> >& vect,char dir,vector<char> domainedeplacement)

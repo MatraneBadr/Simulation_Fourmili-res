@@ -15,12 +15,6 @@ class Cellule {
         
         T_TYPE_CELLULE getType() const;
         void setType(T_TYPE_CELLULE type);
-
-        Cellule getSuivant() const;//droite puis retour à la ligne puis retour a premiere cellule
-        Cellule getDessus() const;
-        Cellule getDessous() const;
-        Cellule getDroite() const;
-        Cellule getGauche() const;
         
          void setNourriture(int n);
 };

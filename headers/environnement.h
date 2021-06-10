@@ -12,6 +12,7 @@ class Environnement
 private:
     /* data */
     int nbreObstacle;
+    int nbreFourmis;
     int nbreNourriture;
     int largeur;
     int hauteur;
@@ -22,7 +23,7 @@ private:
     std::vector<FourmisGuerriere> fourmis;
 public:
     Environnement();
-    Environnement(int nbreO, int nbreN, int l, int h, int tauxPhero);
+    Environnement(int nbreO, int nbreN, int nbrF,int l, int h, int tauxPhero);
     ~Environnement();
     int getNbreObstacle() const { return nbreObstacle;}
     void setNbreObstacle(int nbreO) {nbreObstacle=nbreO;}
@@ -35,7 +36,7 @@ public:
     void setHauteur(int h) {hauteur=h;}
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
-    void affiche(int x,int y);
+    void affiche();
     void insereNewFourmiliere(int x, int y, int pm, int nm, int n);
     void initObstacleNourriture(bool cellulesSontLibres);
     bool contientNourriture(int x,int y);
@@ -43,6 +44,9 @@ public:
     void initTerrain();
     void initObstacle();
     void initNourriture();
+    void initFourmis();
+    bool contientFourmi(int x,int y);
+    void testDep();
     Cellule& getCellule(int x, int y);
     Cellule& getCelluleLibre(int x, int y);
 
