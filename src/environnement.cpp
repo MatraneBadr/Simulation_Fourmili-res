@@ -1,7 +1,7 @@
 
 #include "../headers/environnement.h"
 #include <iostream>
-
+#include <algorithm>
 Environnement::Environnement()
 {
     largeur=100;
@@ -39,11 +39,11 @@ void Environnement::affiche(){
     for (int i=0 ; i < terrain.size();i++){
         std::cout<<std::endl;
         for (int j = 0 ; j < terrain[i].size(); j++){
-            if (contientFourmi(i,j)) std::cout<<"L";
+            if (terrain[i][j].getType() == FOURMILIERE)  std::cout<<"F";
+            else if (contientFourmi(i,j)) std::cout<<"L";
             else if (terrain[i][j].getType() == LIBRE)  std::cout<<"_";
-            else if (contientNourriture(i,j))  std::cout<<"O";
-            else if (contientObstacle(i,j))  std::cout<<"X";
-            else if (terrain[i][j].getType() == FOURMILIERE)  std::cout<<"F";
+            else if (terrain[i][j].getType() == NOURRITURE)  std::cout<<"O";
+            else if (terrain[i][j].getType() == OBSTACLE)  std::cout<<"X";
         }
     }
     std::cout<<std::endl;
@@ -84,6 +84,27 @@ bool Environnement::contientObstacle(int x,int y)
         cO=true;
     return cO;
 
+}
+void Environnement::newObsatcle(int nbrNewObstacle)
+{     
+    int x,y;
+    for (int i = 0; i<nbrNewObstacle;i++){
+        x = rand() % hauteur;
+        y = rand() % largeur;
+        getCelluleLibre(x,y).setType(OBSTACLE);
+        //obstacles.push_back(Obstacle(x,y));
+    }
+
+}
+void Environnement::newNourriture(int nbrNewNourriture)
+{
+     int x,y;
+    for (int i = 0; i<nbrNewNourriture;i++){
+        x = rand() % hauteur;
+        y = rand() % largeur;
+        getCelluleLibre(x,y).setType(NOURRITURE);
+        //obstacles.push_back(Obstacle(x,y));
+    }
 }
 void Environnement::initTerrain()
 {
@@ -137,17 +158,25 @@ bool Environnement::contientFourmi(int x,int y)
 
 }
 void  Environnement::testDep(){
+    bool fourmivie=false;
     for (int i = 0; i<nbreFourmis;i++)
     {
         vector<char> domaine=fourmis[i].etudeEnvironnement(terrain,hauteur,largeur);
         char dir =fourmis[i].direction(domaine,terrain);
+        std::cout << "Fourmi = "<<i<<" Direction = "<<dir<<std::endl;
         fourmis[i].seDeplacer(terrain,dir,domaine);
         if(fourmis[i].getCapacite() == fourmis[i].getQuantiteStocke())
         {
-            std::cout << "La fourmis va a la maison" << std::endl;
             fourmis[i].retourMaison(hauteur,largeur);
             fourmis[i].destockage(*toto);
         }
-    
+        fourmivie=fourmis[i].diminutionVie();
+        if(fourmivie==true)
+        {
+           fourmis.erase(fourmis.begin()+i);
+           nbreFourmis--;
+           if(nbreFourmis==0)
+           break;
+        }
     }
 }

@@ -7,6 +7,7 @@
 #include "fourmiliere.h"
 #include "nourriture.h"
 #include "obstacle.h"
+#include <algorithm>
 class Environnement
 {
 private:
@@ -48,6 +49,8 @@ public:
     void initFourmis();
     bool contientFourmi(int x,int y);
     void testDep();
+    void newObsatcle(int nbrNewObstacle);
+    void newNourriture(int nbrNewNourriture);
     Cellule& getCellule(int x, int y);
     Cellule& getCelluleLibre(int x, int y);
 

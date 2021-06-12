@@ -25,7 +25,7 @@ FourmisGuerriere::FourmisGuerriere( int x , int y)
 {
     _quantiteStocke = 0;
     _capacite = 1;
-    _vie = 10;
+    _vie = 2;
     _age = 0;
     _x=x;
     _y=y;
@@ -44,10 +44,7 @@ void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& 
 {
 
         if(vect[x][y].getType()==OBSTACLE){
-            std::cout << domainedeplacement.size() << std::endl;
-            std::cout << dir << std::endl ;
             domainedeplacement.erase(std::remove(domainedeplacement.begin(),domainedeplacement.end(),dir),domainedeplacement.end());
-            std::cout << domainedeplacement.size() << std::endl;
             char dir= direction(domainedeplacement,vect);
             seDeplacer(vect,dir,domainedeplacement);
         }
@@ -56,7 +53,6 @@ void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& 
         }
         else if(vect[x][y].getType()==LIBRE)
         {
-            std::cout << "Direction" << dir << std::endl;
             this->_x=x;
             this->_y=y;
         }
@@ -155,24 +151,35 @@ void FourmisGuerriere::stockage(vector<vector<Cellule> >& vect, int positionXFoo
     int hauteur,largeur;
     if (this->_capacite > this->_quantiteStocke)
     {
-        cout << "Fourmis can stock" << endl ;
+        cout << "Fourmi  stock" << endl ;
         this->_quantiteStocke = this->_quantiteStocke + 1 ;
         vect[positionXFood][positionYFood].setType(LIBRE);
         this->_x = positionXFood;
         this->_y = positionYFood;
     }
+    /*
     else
     {
-        cout << "coucou" << endl;
+        cout << "Fourmi c" << endl;
     }
-
+*/
     
 }
 
-void FourmisGuerriere::diminutionVie(){
+bool FourmisGuerriere::diminutionVie(){
     /* Diminution de la vie à chaque tour si la vie de la fourmis est a zero elle meurt
      */
-    _vie -=  1 ;
+    bool Foumimorte=false;
+   if(_vie==0)
+   {
+       std::cout<<"Foumi morte"<<std::endl;
+       Foumimorte=true;
+   }
+   else{
+       _vie--;
+       _age++;
+   }
+   return Foumimorte;
 }
 
 void FourmisGuerriere::ravitailler(int vie){
@@ -187,6 +194,7 @@ void FourmisGuerriere::destockage(Fourmiliere& maisonFourmis)
 
 void FourmisGuerriere::retourMaison(int hauteur, int largeur)
 {
+    std::cout << "La fourmis va a la maison" << std::endl;
     this->_x = hauteur/2 ;
     this->_y = largeur/2;
 }

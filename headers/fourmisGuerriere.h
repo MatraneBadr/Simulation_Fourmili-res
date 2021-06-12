@@ -34,7 +34,7 @@ class FourmisGuerriere
         void setY(int y){_y=y;};
         void stockage(vector<vector<Cellule> >& vect, int positionXFood, int positionYFood);
         int getVie() { return _vie; };
-        void diminutionVie();
+        bool diminutionVie();
         void ravitailler(int vie);
         int getCapacite() { return _capacite;}
         int getQuantiteStocke() { return _quantiteStocke; }
