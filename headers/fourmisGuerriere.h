@@ -5,6 +5,7 @@
 #include "cellule.h"
 #include <vector>
 #include <string>
+#include "fourmiliere.h"
 #include "environnement.h"
 using std::vector;
 using std::string;
@@ -39,8 +40,8 @@ class FourmisGuerriere
         int getQuantiteStocke() { return _quantiteStocke; }
         vector<char> etudeEnvironnement(vector<vector<Cellule> >& vect,int x,int y);
         void eviteObstacleChercheNourriture(vector<vector<Cellule> >& vect,int x,int y,char dir,vector<char> domainedeplacement);
-
-
+        void destockage(Fourmiliere& maisonFourmis);
+        void retourMaison(int largeur, int hauteur);
 
 
 

@@ -12,10 +12,14 @@ private:
 
 
 public:
+    Fourmiliere();
     Fourmiliere(int populationMax, int nourritureMax, int nourriture,int x, int y);
     ~Fourmiliere();
     bool consommationNourriture(int n);
     void ajoutNourriture(int n);
+    void setPopmax(int pm);
+    void setNourMax(int nm);
+    void setNourriture(int n);
 
 };
 #endif

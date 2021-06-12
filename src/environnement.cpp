@@ -27,7 +27,8 @@ Environnement::Environnement(int nbreO, int nbreN, int nbrF, int l, int h, int t
     initObstacle();
     initNourriture();
     initFourmis();
-    insereNewFourmiliere(hauteur/2,largeur/2,200,1000,100);
+    toto = new Fourmiliere(500,500,0,largeur/2,hauteur/2);
+    insereNewFourmiliere(*toto);
 }
 
 Environnement::~Environnement()
@@ -40,17 +41,18 @@ void Environnement::affiche(){
         for (int j = 0 ; j < terrain[i].size(); j++){
             if (contientFourmi(i,j)) std::cout<<"L";
             else if (terrain[i][j].getType() == LIBRE)  std::cout<<"_";
-            else if (contientObstacle(i,j))  std::cout<<"X";
             else if (contientNourriture(i,j))  std::cout<<"O";
+            else if (contientObstacle(i,j))  std::cout<<"X";
             else if (terrain[i][j].getType() == FOURMILIERE)  std::cout<<"F";
         }
     }
     std::cout<<std::endl;
 }
 
-void Environnement::insereNewFourmiliere(int x, int y, int pm, int nm, int n){
-    if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
-    terrain[x][y] = Fourmiliere(x,y,pm,nm,n); // appel au constructuer de fourmillere ok
+void Environnement::insereNewFourmiliere(Fourmiliere& maisonFourmis){
+    //if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
+    terrain[hauteur/2][largeur/2] = maisonFourmis; // appel au constructuer de fourmillere ok*/
+
 }
 
 Cellule& Environnement::getCellule(int x, int y) {
@@ -100,6 +102,7 @@ void Environnement::initObstacle()
         x = rand() % hauteur;
         y = rand() % largeur;
         getCelluleLibre(x,y).setType(OBSTACLE);
+        //obstacles.push_back(Obstacle(x,y));
     }
 }
 void Environnement::initNourriture()
@@ -108,8 +111,9 @@ void Environnement::initNourriture()
     for (int i = 0; i<nbreNourriture;i++){
         x = rand() % hauteur;
         y = rand() % largeur;
-        nourritures.push_back(Nourriture(x,y)); 
-        obstacles.push_back(Obstacle(x,y));
+        getCelluleLibre(x,y).setType(NOURRITURE);
+        //nourritures.push_back(Nourriture(x,y)); 
+        
     }
 }
 void Environnement::initFourmis()
@@ -133,10 +137,17 @@ bool Environnement::contientFourmi(int x,int y)
 
 }
 void  Environnement::testDep(){
-     for (int i = 0; i<nbreFourmis;i++){
-            vector<char> domaine=fourmis[i].etudeEnvironnement(terrain,hauteur,largeur);
-            char dir =fourmis[i].direction(domaine,terrain);
-            std::cout<<"Direction = "<<i<<dir<<std::endl;
-            fourmis[i].seDeplacer(terrain,dir,domaine);
-     }
+    for (int i = 0; i<nbreFourmis;i++)
+    {
+        vector<char> domaine=fourmis[i].etudeEnvironnement(terrain,hauteur,largeur);
+        char dir =fourmis[i].direction(domaine,terrain);
+        fourmis[i].seDeplacer(terrain,dir,domaine);
+        if(fourmis[i].getCapacite() == fourmis[i].getQuantiteStocke())
+        {
+            std::cout << "La fourmis va a la maison" << std::endl;
+            fourmis[i].retourMaison(hauteur,largeur);
+            fourmis[i].destockage(*toto);
+        }
+    
+    }
 }

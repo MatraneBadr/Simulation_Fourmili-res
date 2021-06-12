@@ -11,7 +11,8 @@ class Cellule {
     public :
         Cellule();
         Cellule( int coordX, int coordY, T_TYPE_CELLULE type );
-    
+        void setX(int newX);
+        void setY(int newY);
         
         T_TYPE_CELLULE getType() const;
         void setType(T_TYPE_CELLULE type);

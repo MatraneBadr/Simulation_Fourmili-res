@@ -26,3 +26,18 @@ void Fourmiliere::ajoutNourriture(int n){
         _nourriture += n;
     }
 }
+
+void Fourmiliere::setNourriture(int n)
+{
+    this->nourriture = n;
+}
+
+void Fourmiliere::setNourMax(int nm)
+{
+    this->_nourritureMax = nm;
+}
+
+void Fourmiliere::setPopmax(int pm)
+{
+    this->_popMax = pm;
+}

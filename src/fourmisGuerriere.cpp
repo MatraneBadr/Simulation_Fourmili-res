@@ -5,6 +5,7 @@
 #include <random>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 
 using std::vector;
 using std::string;
@@ -13,7 +14,7 @@ using std::endl;
 FourmisGuerriere::FourmisGuerriere()
 {
     _quantiteStocke=0;
-    _capacite=10;
+    _capacite=1;
     _vie=10;
     _age=0;
     _x=0;
@@ -23,7 +24,7 @@ FourmisGuerriere::FourmisGuerriere()
 FourmisGuerriere::FourmisGuerriere( int x , int y)
 {
     _quantiteStocke = 0;
-    _capacite = 10;
+    _capacite = 1;
     _vie = 10;
     _age = 0;
     _x=x;
@@ -43,17 +44,22 @@ void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& 
 {
 
         if(vect[x][y].getType()==OBSTACLE){
+            std::cout << domainedeplacement.size() << std::endl;
+            std::cout << dir << std::endl ;
+            domainedeplacement.erase(std::remove(domainedeplacement.begin(),domainedeplacement.end(),dir),domainedeplacement.end());
+            std::cout << domainedeplacement.size() << std::endl;
             char dir= direction(domainedeplacement,vect);
-            eviteObstacleChercheNourriture(vect,x,y,dir,domainedeplacement);
+            seDeplacer(vect,dir,domainedeplacement);
         }
         if(vect[x][y].getType()==NOURRITURE){
             stockage(vect,x,y);
         }
-         if(vect[x][y].getType()==LIBRE)
-         {
-             this->_x=x;
-             this->_y=y;
-         }
+        else if(vect[x][y].getType()==LIBRE)
+        {
+            std::cout << "Direction" << dir << std::endl;
+            this->_x=x;
+            this->_y=y;
+        }
 }
 
 vector<char> FourmisGuerriere::etudeEnvironnement(vector<vector<Cellule> >& vect,int hauteur,int largeur)
@@ -146,15 +152,18 @@ void FourmisGuerriere::seDeplacer(vector<vector<Cellule> >& vect,char dir,vector
 }
 void FourmisGuerriere::stockage(vector<vector<Cellule> >& vect, int positionXFood, int positionYFood)
 {
+    int hauteur,largeur;
     if (this->_capacite > this->_quantiteStocke)
     {
         cout << "Fourmis can stock" << endl ;
         this->_quantiteStocke = this->_quantiteStocke + 1 ;
         vect[positionXFood][positionYFood].setType(LIBRE);
+        this->_x = positionXFood;
+        this->_y = positionYFood;
     }
     else
     {
-        cout << "Fourmis cant stock" << endl ;
+        cout << "coucou" << endl;
     }
 
     
@@ -168,4 +177,16 @@ void FourmisGuerriere::diminutionVie(){
 
 void FourmisGuerriere::ravitailler(int vie){
     /* Pour ce ravitailler la fourmis doit manger a voir comment ça fonctionne */
+}
+
+void FourmisGuerriere::destockage(Fourmiliere& maisonFourmis)
+{
+    maisonFourmis.ajoutNourriture(this->_quantiteStocke);
+    this->_quantiteStocke = 0 ;
+}
+
+void FourmisGuerriere::retourMaison(int hauteur, int largeur)
+{
+    this->_x = hauteur/2 ;
+    this->_y = largeur/2;
 }

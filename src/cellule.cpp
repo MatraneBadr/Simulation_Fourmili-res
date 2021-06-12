@@ -21,3 +21,13 @@ void Cellule::setType(T_TYPE_CELLULE type) {
 void Cellule::setNourriture(int n){
     this->nourriture = n;
 }
+
+void Cellule::setX(int newX)
+{
+    this->x = newX;
+}
+
+void Cellule::setY(int newY)
+{
+    this->y = newY;
+}

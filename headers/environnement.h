@@ -21,6 +21,7 @@ private:
     std::vector<Nourriture> nourritures;
     std::vector<Obstacle> obstacles;
     std::vector<FourmisGuerriere> fourmis;
+    Fourmiliere* toto;
 public:
     Environnement();
     Environnement(int nbreO, int nbreN, int nbrF,int l, int h, int tauxPhero);
@@ -37,7 +38,7 @@ public:
     int getTauxPheromone() const { return tauxPheromone;}
     void setTauxPheromone(int tauxPhero) {tauxPheromone=tauxPhero;}
     void affiche();
-    void insereNewFourmiliere(int x, int y, int pm, int nm, int n);
+    void insereNewFourmiliere(Fourmiliere& maisonFourmis);
     void initObstacleNourriture(bool cellulesSontLibres);
     bool contientNourriture(int x,int y);
     bool contientObstacle(int x,int y);
