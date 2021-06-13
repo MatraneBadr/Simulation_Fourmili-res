@@ -9,6 +9,7 @@ private:
     int _popMax;
     int _nourriture;
     int _nourritureMax;
+    int _population;
 
 
 public:
@@ -20,6 +21,8 @@ public:
     void setPopmax(int pm);
     void setNourMax(int nm);
     void setNourriture(int n);
+    int getNourriture(){return _nourriture;};
+    int getPopulation(){return _population;};
 
 };
 #endif

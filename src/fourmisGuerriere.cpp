@@ -14,8 +14,8 @@ using std::endl;
 FourmisGuerriere::FourmisGuerriere()
 {
     _quantiteStocke=0;
-    _capacite=1;
-    _vie=10;
+    _capacite=10;
+    _vie=150;
     _age=0;
     _x=0;
     _y=0;
@@ -24,8 +24,8 @@ FourmisGuerriere::FourmisGuerriere()
 FourmisGuerriere::FourmisGuerriere( int x , int y)
 {
     _quantiteStocke = 0;
-    _capacite = 1;
-    _vie = 2;
+    _capacite = 10;
+    _vie = 150;
     _age = 0;
     _x=x;
     _y=y;
@@ -169,17 +169,16 @@ void FourmisGuerriere::stockage(vector<vector<Cellule> >& vect, int positionXFoo
 bool FourmisGuerriere::diminutionVie(){
     /* Diminution de la vie à chaque tour si la vie de la fourmis est a zero elle meurt
      */
-    bool Foumimorte=false;
+    bool Fourmimorte=false;
    if(_vie==0)
    {
-       std::cout<<"Foumi morte"<<std::endl;
-       Foumimorte=true;
+       Fourmimorte=true;
    }
    else{
        _vie--;
        _age++;
    }
-   return Foumimorte;
+   return Fourmimorte;
 }
 
 void FourmisGuerriere::ravitailler(int vie){

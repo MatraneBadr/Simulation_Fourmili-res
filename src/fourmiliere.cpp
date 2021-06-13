@@ -4,6 +4,7 @@ Fourmiliere::Fourmiliere(int populationMax, int nourritureMax, int nourriture,in
     _popMax = populationMax;
     _nourritureMax = nourritureMax;
     _nourriture = nourriture;
+    _population = 1;
 
 }
 

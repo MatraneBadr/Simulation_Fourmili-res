@@ -33,7 +33,7 @@ int main()
     cout<<"Start (Y/N)?:"<<endl;
     cin>>start;
     cout << "----------------------------------------" << std::endl;
-    if(start=='Y')
+    if(start=='Y' || start=='y')
     {
         partieEnCours=true ;
     }else{
@@ -62,14 +62,16 @@ int main()
                     }
 
             }
-            cout <<"TOUR "<<i<<endl; 
+            cout <<"Tour number:"<<i<<endl; 
             monEnv->testDep();
             monEnv->affiche();
+            monEnv->checkSimulation();
+            monEnv->checkFourmis();
         }
-        cout<<"Fin de la partie\n";
+        cout<<"Fin de la partie" << endl;
     }
     else{
-        cout<<"A+\n";
+        cout<<"FERMETURE DU PROGRAMME" << endl;
     }
     
     return 0;

@@ -53,6 +53,8 @@ public:
     void newNourriture(int nbrNewNourriture);
     Cellule& getCellule(int x, int y);
     Cellule& getCelluleLibre(int x, int y);
+    void checkSimulation();
+    void checkFourmis();
 
 };
 #endif

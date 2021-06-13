@@ -49,6 +49,13 @@ void Environnement::affiche(){
     std::cout<<std::endl;
 }
 
+void Environnement::checkSimulation()
+{
+    std::cout << "Fourmiliere nourriture:" << toto->getNourriture() << std::endl;
+    std::cout << "Fourmiliere population:" << toto->getPopulation() << std::endl;
+    std::cout << "Nombre de fourmis actuellement" << fourmis.size() << std::endl;
+}
+
 void Environnement::insereNewFourmiliere(Fourmiliere& maisonFourmis){
     //if (x >= hauteur or x < 0 or y < 0 or y > largeur) throw 0; //out of range
     terrain[hauteur/2][largeur/2] = maisonFourmis; // appel au constructuer de fourmillere ok*/
@@ -163,7 +170,7 @@ void  Environnement::testDep(){
     {
         vector<char> domaine=fourmis[i].etudeEnvironnement(terrain,hauteur,largeur);
         char dir =fourmis[i].direction(domaine,terrain);
-        std::cout << "Fourmi = "<<i<<" Direction = "<<dir<<std::endl;
+        std::cout << "Fourmi numéro: "<<i<<"se dirige vers:"<<dir<<std::endl;
         fourmis[i].seDeplacer(terrain,dir,domaine);
         if(fourmis[i].getCapacite() == fourmis[i].getQuantiteStocke())
         {
@@ -173,10 +180,28 @@ void  Environnement::testDep(){
         fourmivie=fourmis[i].diminutionVie();
         if(fourmivie==true)
         {
-           fourmis.erase(fourmis.begin()+i);
-           nbreFourmis--;
-           if(nbreFourmis==0)
-           break;
+            std::cout << "La fourmi numero " << i << "est morte" << std::endl;
+            fourmis.erase(fourmis.begin()+i);
+            nbreFourmis--;
+            if(nbreFourmis==0)
+            break;
         }
     }
+}
+
+void Environnement::checkFourmis()
+{
+    if (fourmis.size()>0)
+    {
+        std::cout <<"--------------------------------------------------------------------------"<< std::endl;
+        for (int i = 0; i < fourmis.size(); i++)
+        {
+            std::cout <<"La fourmi n°" << i << "stock nourriture:" << fourmis[i].getQuantiteStocke()<<"Vie:"<<fourmis[i].getVie() << std::endl;
+        }
+        std::cout <<"--------------------------------------------------------------------------"<< std::endl;
+        /* code */
+    }
+    
+    
+    
 }
