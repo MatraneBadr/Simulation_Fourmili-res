@@ -28,6 +28,7 @@ Environnement::Environnement(int nbreO, int nbreN, int nbrF, int l, int h, int t
     initNourriture();
     initFourmis();
     toto = new Fourmiliere(500,500,0,largeur/2,hauteur/2);
+    Meruem = new Reine();
     insereNewFourmiliere(*toto);
 }
 
@@ -204,4 +205,34 @@ void Environnement::checkFourmis()
     
     
     
+}
+
+void Environnement::calculPopulation()
+{
+    int population = 1; // La reine
+    population = population + fourmis.size() + oeufs.size();
+    toto->setPop(population);
+    std::cout << toto->getPopulation() << std::endl;
+}
+
+void Environnement::consommation()
+{
+    int consommation = 0 , sum=0 ;
+    consommation = consommation + Meruem->getConsommation();
+    for(int i = 0 ; i < oeufs.size() ; i++)
+    {
+        sum = sum + oeufs[i]->getConsommation();
+    }
+    consommation = consommation + sum;
+    toto->consommationNourriture(consommation);
+    
+    
+}
+
+void Environnement::ponteOeuf()
+{
+    if(toto->getPopulation() < toto->getPopMax())
+    {
+        Meruem->ponteOeuf(oeufs);
+    }
 }

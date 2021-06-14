@@ -25,7 +25,7 @@ FourmisGuerriere::FourmisGuerriere( int x , int y)
 {
     _quantiteStocke = 0;
     _capacite = 10;
-    _vie = 150;
+    _vie = 15;
     _age = 0;
     _x=x;
     _y=y;

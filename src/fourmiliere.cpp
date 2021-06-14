@@ -33,6 +33,11 @@ void Fourmiliere::setNourriture(int n)
     this->nourriture = n;
 }
 
+void Fourmiliere::setPop(int population)
+{
+    this->_population = population;
+}
+
 void Fourmiliere::setNourMax(int nm)
 {
     this->_nourritureMax = nm;

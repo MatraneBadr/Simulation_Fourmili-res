@@ -11,8 +11,6 @@ using namespace std;
 
 int main()
 {
-    /*
-
     int nbrObstacle, nbrNourriture,nbreFourmis, nbTour, largeur, hauteur,newNbrObstacle,newNbrNourriture;
     bool partieEnCours;
     std::vector<std::vector<Cellule> > terrain;
@@ -68,24 +66,13 @@ int main()
             monEnv->affiche();
             monEnv->checkSimulation();
             monEnv->checkFourmis();
+            monEnv->ponteOeuf();
+            monEnv->calculPopulation();
         }
         cout<<"Fin de la partie" << endl;
     }
     else{
         cout<<"FERMETURE DU PROGRAMME" << endl;
-    }
-    */
-    int i = 0;
-    Reine* chef = new Reine();
-    vector<Oeuf*> tableauOeuf;
-    chef->ponteOeuf(tableauOeuf);
-    cout << tableauOeuf.size() << endl;
-    cout << tableauOeuf[0]->getAge() << endl;
-    
-
-
-   
-
-    
+    }   
     return 0;
 }

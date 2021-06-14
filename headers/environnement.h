@@ -8,6 +8,7 @@
 #include "nourriture.h"
 #include "obstacle.h"
 #include <algorithm>
+#include "reine.h"
 class Environnement
 {
 private:
@@ -22,7 +23,9 @@ private:
     std::vector<Nourriture> nourritures;
     std::vector<Obstacle> obstacles;
     std::vector<FourmisGuerriere> fourmis;
+    std::vector<Oeuf*> oeufs;
     Fourmiliere* toto;
+    Reine* Meruem;
 public:
     Environnement();
     Environnement(int nbreO, int nbreN, int nbrF,int l, int h, int tauxPhero);
@@ -55,6 +58,10 @@ public:
     Cellule& getCelluleLibre(int x, int y);
     void checkSimulation();
     void checkFourmis();
+    void calculPopulation();
+    void ponteOeuf();
+    void consommation();
+    void Vieillissement();
 
 };
 #endif

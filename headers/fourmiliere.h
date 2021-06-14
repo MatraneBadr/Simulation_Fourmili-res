@@ -23,6 +23,8 @@ public:
     void setNourriture(int n);
     int getNourriture(){return _nourriture;};
     int getPopulation(){return _population;};
+    void setPop(int population);
+    int getPopMax(){return _popMax;};
 
 };
 #endif
