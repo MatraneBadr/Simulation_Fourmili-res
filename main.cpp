@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
+    /*
 
     int nbrObstacle, nbrNourriture,nbreFourmis, nbTour, largeur, hauteur,newNbrObstacle,newNbrNourriture;
     bool partieEnCours;
@@ -73,6 +74,18 @@ int main()
     else{
         cout<<"FERMETURE DU PROGRAMME" << endl;
     }
+    */
+    int i = 0;
+    Reine* chef = new Reine();
+    vector<Oeuf*> tableauOeuf;
+    chef->ponteOeuf(tableauOeuf);
+    cout << tableauOeuf.size() << endl;
+    cout << tableauOeuf[0]->getAge() << endl;
+    
+
+
+   
+
     
     return 0;
 }

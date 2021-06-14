@@ -22,7 +22,7 @@ void Reine::consommerNourriture(Fourmiliere maisonFourmis){
     cout << "consommation" << endl;
 }
 
-vector<Oeuf*> Reine::ponteOeuf(vector<Oeuf*> listOeuf)
+void Reine::ponteOeuf(vector<Oeuf*>& listOeuf)
 {
     /*
         A chaque fois que la fonction est appelé la reine va pondre un oeuf
@@ -32,5 +32,4 @@ vector<Oeuf*> Reine::ponteOeuf(vector<Oeuf*> listOeuf)
     Oeuf* newOeuf;
     newOeuf = new Oeuf();
     listOeuf.push_back(newOeuf);
-    return listOeuf;
 }

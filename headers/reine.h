@@ -14,7 +14,7 @@ class Reine
         Reine();
         ~Reine();
         int getConsommation(){return _consommation;};
-        vector<Oeuf*> ponteOeuf(vector<Oeuf*> listOeuf);
+        void ponteOeuf(vector<Oeuf*>& listOeuf);
         void consommerNourriture(Fourmiliere maisonFourmis);
 
 };
