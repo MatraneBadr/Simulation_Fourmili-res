@@ -18,7 +18,7 @@ private:
     int nbreNourriture;
     int largeur;
     int hauteur;
-    int tauxPheromone;
+    double tauxPheromone;
     std::vector<std::vector<Cellule> > terrain;
     std::vector<Nourriture> nourritures;
     std::vector<Obstacle> obstacles;
@@ -28,7 +28,7 @@ private:
     Reine* Meruem;
 public:
     Environnement();
-    Environnement(int nbreO, int nbreN, int nbrF,int l, int h, int tauxPhero);
+    Environnement(int nbreO, int nbreN, int nbrF,int l, int h, double tauxPhero);
     ~Environnement();
     int getNbreObstacle() const { return nbreObstacle;}
     void setNbreObstacle(int nbreO) {nbreObstacle=nbreO;}
@@ -62,6 +62,8 @@ public:
     void ponteOeuf();
     void consommation();
     void Vieillissement();
+    double getPheromoneCellule(int x, int y);
+    void evapPheromoneCellule();
 
 };
 #endif

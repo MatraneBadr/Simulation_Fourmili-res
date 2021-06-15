@@ -66,8 +66,10 @@ int main()
             monEnv->affiche();
             monEnv->checkSimulation();
             monEnv->checkFourmis();
+            monEnv->evapPheromoneCellule();
             monEnv->ponteOeuf();
             monEnv->calculPopulation();
+        
         }
         cout<<"Fin de la partie" << endl;
     }

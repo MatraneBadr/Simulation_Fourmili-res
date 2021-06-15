@@ -7,7 +7,7 @@ class Cellule {
         int y;
         T_TYPE_CELLULE type;
     protected:
-        int _pheromones;
+        double _pheromones;
     public :
         Cellule();
         Cellule( int coordX, int coordY,int pheromone, T_TYPE_CELLULE type );
@@ -19,6 +19,10 @@ class Cellule {
         void addPheromone(int qte){
             _pheromones+=qte;
         }
-        int getPheromone(){return _pheromones;}
+        void evaporationPheromone(double taux)
+        {
+            _pheromones=_pheromones*taux;
+        }
+        double getPheromone(){return _pheromones;}
 };
 #endif // CELLULE_H

@@ -55,8 +55,6 @@ void FourmisGuerriere::eviteObstacleChercheNourriture(vector<vector<Cellule> >& 
         }
         else if(vect[x][y].getType()==LIBRE)
         {
-            vect[x][y].addPheromone(1);
-            cout<<"nbr pheromone dans la cellule ("<<x<<","<<y<<")="<<vect[x][y].getPheromone()<<endl;
             this->_x=x;
             this->_y=y;
         }

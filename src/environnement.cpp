@@ -15,7 +15,7 @@ Environnement::Environnement()
    // insereNewFourmiliere(hauteur/2,largeur/2,200,1000,100);
 }
 
-Environnement::Environnement(int nbreO, int nbreN, int nbrF, int l, int h, int tauxPhero)
+Environnement::Environnement(int nbreO, int nbreN, int nbrF, int l, int h, double tauxPhero)
 {
     nbreObstacle=nbreO;
     nbreNourriture=nbreN;
@@ -235,4 +235,19 @@ void Environnement::ponteOeuf()
     {
         Meruem->ponteOeuf(oeufs);
     }
+}
+double Environnement::getPheromoneCellule(int x, int y){
+    return terrain[x][y].getPheromone();
+}
+void Environnement::evapPheromoneCellule()
+{
+        for (int i=0 ; i < terrain.size();i++){
+        for (int j = 0 ; j < terrain[i].size(); j++){
+            if(getPheromoneCellule(i,j)>0)
+            {
+                terrain[i][j].evaporationPheromone(tauxPheromone);
+                std::cout<<"evaporation pheromone dans la cellule ("<<i<<","<<j<<")="<<getPheromoneCellule(i,j)<<std::endl;
+            }
+        }
+    }   
 }
