@@ -7,16 +7,18 @@ class Cellule {
         int y;
         T_TYPE_CELLULE type;
     protected:
-        int nourriture;
+        int _pheromones;
     public :
         Cellule();
-        Cellule( int coordX, int coordY, T_TYPE_CELLULE type );
+        Cellule( int coordX, int coordY,int pheromone, T_TYPE_CELLULE type );
         void setX(int newX);
         void setY(int newY);
         
         T_TYPE_CELLULE getType() const;
         void setType(T_TYPE_CELLULE type);
-        
-         void setNourriture(int n);
+        void addPheromone(int qte){
+            _pheromones+=qte;
+        }
+        int getPheromone(){return _pheromones;}
 };
 #endif // CELLULE_H

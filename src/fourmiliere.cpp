@@ -1,6 +1,6 @@
 #include "../headers/fourmiliere.h"
 
-Fourmiliere::Fourmiliere(int populationMax, int nourritureMax, int nourriture,int x,int y):Cellule(x,y,FOURMILIERE){  
+Fourmiliere::Fourmiliere(int populationMax, int nourritureMax, int nourriture,int x,int y):Cellule(x,y,0,FOURMILIERE){  
     _popMax = populationMax;
     _nourritureMax = nourritureMax;
     _nourriture = nourriture;
@@ -30,7 +30,7 @@ void Fourmiliere::ajoutNourriture(int n){
 
 void Fourmiliere::setNourriture(int n)
 {
-    this->nourriture = n;
+    this->_nourriture = n;
 }
 
 void Fourmiliere::setPop(int population)

@@ -120,7 +120,7 @@ void Environnement::initTerrain()
     for (int i=0 ; i < terrain.size();i++){
         terrain[i].resize(largeur);
         for (int j = 0 ; j < terrain[i].size(); j++){
-            terrain[i][j] = Cellule( i , j , LIBRE);
+            terrain[i][j] = Cellule( i , j ,0, LIBRE);
         }
     }
 }

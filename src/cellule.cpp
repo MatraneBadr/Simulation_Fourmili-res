@@ -4,10 +4,13 @@
 Cellule::Cellule(){
     x = 0;
     y = 0;
+    _pheromones=0;
+    type=LIBRE;
 }
-Cellule::Cellule(int coordX, int coordY, T_TYPE_CELLULE type){
+Cellule::Cellule(int coordX, int coordY,int pheromone, T_TYPE_CELLULE type){
     x = coordX;
     y = coordY;
+    _pheromones=pheromone;
     this->type = type;
 }
 
@@ -18,9 +21,7 @@ T_TYPE_CELLULE Cellule::getType() const {
 void Cellule::setType(T_TYPE_CELLULE type) {
     this->type = type;
 }
-void Cellule::setNourriture(int n){
-    this->nourriture = n;
-}
+
 
 void Cellule::setX(int newX)
 {
