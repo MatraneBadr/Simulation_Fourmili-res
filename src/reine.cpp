@@ -1,7 +1,7 @@
 #include "../headers/reine.h"
 #include <string>
 #include <iostream>
-
+#include <vector>
 
 using std::string;
 using std::cout;

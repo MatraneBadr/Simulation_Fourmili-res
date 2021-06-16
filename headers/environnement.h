@@ -36,6 +36,7 @@ public:
     void setNbreNourriture(int nbreN) {nbreNourriture=nbreN;}
     int getLargeur() const { return largeur;}
     std::vector<std::vector<Cellule> >  getTerrain() const { return terrain;}
+    std::vector<FourmisGuerriere>  getFourmis() const { return fourmis;}
     void setLargeur(int l) {largeur=l;}
     int getHauteur() const { return hauteur;}
     void setHauteur(int h) {hauteur=h;}
@@ -64,6 +65,8 @@ public:
     void Vieillissement();
     double getPheromoneCellule(int x, int y);
     void evapPheromoneCellule();
-
+    void changerEtatOeuf();
+    bool checkCelluleLibre(int x,int y);
+    void addFourmis();
 };
 #endif

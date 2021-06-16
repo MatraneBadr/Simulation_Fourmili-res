@@ -154,6 +154,14 @@ void Environnement::initFourmis()
         fourmis.push_back(FourmisGuerriere(x,y));
     }
 }
+void Environnement::addFourmis()
+{
+    int x,y;
+        x = rand() % hauteur;
+        y = rand() % largeur; 
+        fourmis.push_back(FourmisGuerriere(x,y));
+    
+}
 bool Environnement::contientFourmi(int x,int y)
 {
     bool cF=false;
@@ -234,6 +242,7 @@ void Environnement::ponteOeuf()
     if(toto->getPopulation() < toto->getPopMax())
     {
         Meruem->ponteOeuf(oeufs);
+        std::cout<<"PontOeuf "<<std::endl;
     }
 }
 double Environnement::getPheromoneCellule(int x, int y){
@@ -251,3 +260,31 @@ void Environnement::evapPheromoneCellule()
         }
     }   
 }
+void Environnement::changerEtatOeuf()
+{
+    int x,y;
+    for(int i=0;i<oeufs.size();i++)
+    {
+        if(oeufs[i]->getEtat()==OEUF)
+        {
+            std::cout<<"Oeuf se tran larve"<<std::endl;
+            oeufs[i]->setEtat(LARVE);
+        }
+        else if(oeufs[i]->getEtat()==LARVE)
+            {
+            std::cout<<"Lavre devient fourmi"<<std::endl;
+            oeufs.erase(oeufs.begin()+i);
+            nbreFourmis++;
+            addFourmis();
+            }
+    }
+}
+/*
+bool Environnement::checkCelluleLibre(int x,int y)
+{
+    if(terrain[x][y].getType()==LIBRE)
+    return true;
+    else
+    return false;
+}
+*/

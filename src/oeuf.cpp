@@ -11,6 +11,7 @@ Oeuf::Oeuf()
 {
     _consommation = 1;
     _age = 0;
+    _etat=OEUF;
 }
 
 Oeuf::~Oeuf()

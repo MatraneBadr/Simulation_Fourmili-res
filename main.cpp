@@ -59,15 +59,20 @@ int main()
                             monEnv->newNourriture(newNbrNourriture);
                             monEnv->newObsatcle(newNbrObstacle);
                     }
+                    
 
             }
+            else if(nbTour%2==0){
+                monEnv->ponteOeuf();
+                monEnv->changerEtatOeuf();
+            }
+            
             cout <<"Tour number:"<<i<<endl; 
             monEnv->testDep();
             monEnv->affiche();
             monEnv->checkSimulation();
             monEnv->checkFourmis();
             monEnv->evapPheromoneCellule();
-            monEnv->ponteOeuf();
             monEnv->calculPopulation();
         
         }
