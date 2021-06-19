@@ -21,6 +21,7 @@ Oeuf::~Oeuf()
 void Oeuf::Vieillir()
 {
     _age++;
+    _consommation++;
 }
 
 void Oeuf::consommerNourriture(Fourmiliere maisonFourmis)

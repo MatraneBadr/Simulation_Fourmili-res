@@ -19,7 +19,6 @@ Reine::~Reine()
 
 void Reine::consommerNourriture(Fourmiliere maisonFourmis){
     maisonFourmis.consommationNourriture(_consommation);
-    cout << "consommation" << endl;
 }
 
 void Reine::ponteOeuf(vector<Oeuf*>& listOeuf)
