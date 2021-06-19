@@ -271,8 +271,13 @@ void Environnement::changerEtatOeuf()
             oeufs[i]->setEtat(LARVE);
         }
         else if(oeufs[i]->getEtat()==LARVE)
+        {
+            std::cout<<"LARVE se tran OUVRIERE"<<std::endl;
+            oeufs[i]->setEtat(OUVRIERE);
+        }
+        else if(oeufs[i]->getEtat()==OUVRIERE)
             {
-            std::cout<<"Lavre devient fourmi"<<std::endl;
+            std::cout<<"OUVRIERE devient fourmi"<<std::endl;
             oeufs.erase(oeufs.begin()+i);
             nbreFourmis++;
             addFourmis();

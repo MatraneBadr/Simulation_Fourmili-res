@@ -46,6 +46,14 @@ int main()
         
         for (size_t i = 0; i < nbTour; i++)
         {
+            cout <<"Tour number: "<<i<<endl; 
+            monEnv->testDep();
+            monEnv->affiche();
+            monEnv->checkSimulation();
+            monEnv->checkFourmis();
+            monEnv->evapPheromoneCellule();
+            monEnv->calculPopulation();
+            monEnv->changerEtatOeuf();
             if(i==nbTour/2)
             {
                cout<<"Voulez vous ajouter de nouveaux Obstacles et Nourritures (Y/N)?:"<<endl; 
@@ -59,21 +67,12 @@ int main()
                             monEnv->newNourriture(newNbrNourriture);
                             monEnv->newObsatcle(newNbrObstacle);
                     }
-                    
 
             }
-            else if(nbTour%2==0){
+            else if(i%2==0)
+            {
                 monEnv->ponteOeuf();
-                monEnv->changerEtatOeuf();
             }
-            
-            cout <<"Tour number:"<<i<<endl; 
-            monEnv->testDep();
-            monEnv->affiche();
-            monEnv->checkSimulation();
-            monEnv->checkFourmis();
-            monEnv->evapPheromoneCellule();
-            monEnv->calculPopulation();
         
         }
         cout<<"Fin de la partie" << endl;
@@ -83,3 +82,4 @@ int main()
     }   
     return 0;
 }
+

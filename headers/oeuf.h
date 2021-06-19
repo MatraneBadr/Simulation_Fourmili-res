@@ -1,7 +1,7 @@
 #ifndef OEUF_H
 #define OEUF_H
 #include "fourmiliere.h"
-typedef enum { LARVE , OEUF  } T_ETAT_OEUF ;
+typedef enum { LARVE , OEUF , OUVRIERE } T_ETAT_OEUF ;
 class Oeuf{
     private:
         int _consommation;
