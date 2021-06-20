@@ -157,8 +157,8 @@ void Environnement::initFourmis()
 void Environnement::addFourmis()
 {
     int x,y;
-        x = rand() % hauteur;
-        y = rand() % largeur; 
+        x = hauteur/2;
+        y = largeur/2; 
         fourmis.push_back(FourmisGuerriere(x,y));
     
 }
@@ -284,12 +284,3 @@ void Environnement::changerEtatOeuf()
             }
     }
 }
-/*
-bool Environnement::checkCelluleLibre(int x,int y)
-{
-    if(terrain[x][y].getType()==LIBRE)
-    return true;
-    else
-    return false;
-}
-*/
